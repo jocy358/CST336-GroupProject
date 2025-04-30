@@ -1,0 +1,11 @@
+.header-container {
+    display: flex;
+    background-color: rgb(134, 237, 106);
+    color:aliceblue;
+    font-family: 'Courier New', Courier, monospace;
+  }
+.signup-container > div{
+    margin: 10px;
+    padding: 20px;
+    font-size: 30px;
+}
