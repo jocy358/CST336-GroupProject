@@ -29,12 +29,16 @@ const pool = mysql.createPool({
 const conn = await pool.getConnection();
 
 app.get('/', (req, res) => {
-   res.render('home.ejs')
+   res.render('login.ejs')
 });
+
 
 app.post('/login', async(req, res) => {
     let username = req.body.username;
+    console.log(username);
     let password = req.body.password;
+    console.log(password);
+
     let hashPassword;
     let sql = "SELECT * FROM users WHERE username = ?";
     const [rows] = await conn.query(sql, [username]);
@@ -43,6 +47,7 @@ app.post('/login', async(req, res) => {
     }
     const match = await bcrypt.compare(password, hashPassword);
     if(match) {
+        console.log("HI")
         req.session.userAuthenticated = true;
         req.session.fullName = rows[0].firstName + ' ' + rows[0].lastName;
         res.render('home.ejs')
@@ -51,6 +56,27 @@ app.post('/login', async(req, res) => {
     }
 })
 
+app.get('/signUp', async(req, res) => {
+    res.render('signUp.ejs')
+})
+
+app.get("/home", async(req, res) => {
+
+    res.render('home.ejs');
+});
+
+app.get("/foodLogger", async(req, res) => {
+
+    res.render('foodLogger.ejs');
+});
+app.get("/overview", async(req, res) => {
+
+    res.render('overview.ejs');
+});
+app.get("/search", async(req, res) => {
+
+    res.render('search.ejs');
+});
 
 app.get("/dbTest", async(req, res) => {
     let sql = "SELECT CURDATE()";
