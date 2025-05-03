@@ -51,6 +51,14 @@ app.post('/login', async(req, res) => {
     }
 })
 
+app.get('/signup', async(req, res) => {
+    res.render('signup.ejs')
+    
+});
+app.get('/overview', async(req, res) => {
+    res.render('overview.ejs')
+});
+
 
 app.get("/dbTest", async(req, res) => {
     let sql = "SELECT CURDATE()";
