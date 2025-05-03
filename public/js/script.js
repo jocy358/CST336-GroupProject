@@ -4,7 +4,7 @@ async function searchRecipe() {
     // alert("function working")
     let searchQuery = document.querySelector("#recipeSearch").value.replace(/\s+/g, "+");
     // console.log(searchQuery);
-    let apiKey = "c408505b3ad44b8ebf90a2476f81d6a3";
+    let apiKey = "";
     let url = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + searchQuery + "&number=10&apiKey=" + apiKey;
 
     let response = await fetch(url);
