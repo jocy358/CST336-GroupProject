@@ -38,11 +38,12 @@ app.post('/login', async(req, res) => {
     let password = req.body.password;
     let hashPassword;
     let sql = "SELECT * FROM users WHERE username = ?";
+    let match;
     const [rows] = await conn.query(sql, [username]);
     if(rows.length > 0) {
         hashPassword = rows[0].password;
-    }
-    const match = await bcrypt.compare(password, hashPassword);
+        match = await bcrypt.compare(password, hashPassword);
+    } 
     if(match) {
         req.session.userAuthenticated = true;
         res.render('home.ejs')
@@ -61,15 +62,20 @@ app.post('/signUp', async(req, res) => {
     let username = req.body.username;
     let password = req.body.password;
     let confirmPassword = req.body.password_confirmation;
-    if(password != confirmPassword) {
+    let sql = "SELECT * FROM users WHERE username = ?";
+    const [user] = await conn.query(sql, [username]);
+    if(user.length > 0) {
+        res.render('signUp.ejs', {"error":"Username already in use."})
+    }
+    else if(password != confirmPassword) {
         res.render('signUp.ejs', {"error":"Passwords do not match."})
     } else {
         const saltRounds = 10;
         const hashedPassword = await bcrypt.hash(password, saltRounds);
         let sql = "INSERT INTO users (username, password, firstName, lastName) VALUES (?, ?, ?, ?)";
         let sqlParams = [username, hashedPassword, fn, ln];
-        const [authorInfo] = await conn.query(sql, sqlParams);
-        res.redirect('/')
+        const [userInfo] = await conn.query(sql, sqlParams);
+        res.render('login.ejs', {"error":"Successfully Signed Up"})
     }
 })
 
