@@ -35,10 +35,7 @@ app.get('/', (req, res) => {
 
 app.post('/login', async(req, res) => {
     let username = req.body.username;
-    console.log(username);
     let password = req.body.password;
-    console.log(password);
-
     let hashPassword;
     let sql = "SELECT * FROM users WHERE username = ?";
     const [rows] = await conn.query(sql, [username]);
@@ -47,9 +44,7 @@ app.post('/login', async(req, res) => {
     }
     const match = await bcrypt.compare(password, hashPassword);
     if(match) {
-        console.log("HI")
         req.session.userAuthenticated = true;
-        req.session.fullName = rows[0].firstName + ' ' + rows[0].lastName;
         res.render('home.ejs')
     } else {
         res.render('login.ejs', {"error":"Wrong credentials!"})
@@ -60,23 +55,46 @@ app.get('/signUp', async(req, res) => {
     res.render('signUp.ejs')
 })
 
-app.get("/home", async(req, res) => {
+app.post('/signUp', async(req, res) => {
+    let fn = req.body.firstname;
+    let ln = req.body.lastname;
+    let username = req.body.username;
+    let password = req.body.password;
+    let confirmPassword = req.body.password_confirmation;
+    if(password != confirmPassword) {
+        res.render('signUp.ejs', {"error":"Passwords do not match."})
+    } else {
+        const saltRounds = 10;
+        const hashedPassword = await bcrypt.hash(password, saltRounds);
+        let sql = "INSERT INTO users (username, password, firstName, lastName) VALUES (?, ?, ?, ?)";
+        let sqlParams = [username, hashedPassword, fn, ln];
+        const [authorInfo] = await conn.query(sql, sqlParams);
+        res.redirect('/')
+    }
+})
+
+app.get("/home",isAuthenticated, async(req, res) => {
 
     res.render('home.ejs');
 });
 
-app.get("/foodLogger", async(req, res) => {
+app.get("/foodLogger", isAuthenticated, async(req, res) => {
 
     res.render('foodLogger.ejs');
 });
-app.get("/overview", async(req, res) => {
+app.get("/overview", isAuthenticated, async(req, res) => {
 
     res.render('overview.ejs');
 });
-app.get("/search", async(req, res) => {
+app.get("/search", isAuthenticated, async(req, res) => {
 
     res.render('search.ejs');
 });
+
+app.get('/logout', (req, res) => {
+    req.session.destroy();
+    res.render('login.ejs')
+}); 
 
 app.get("/dbTest", async(req, res) => {
     let sql = "SELECT CURDATE()";
@@ -87,4 +105,12 @@ app.get("/dbTest", async(req, res) => {
 app.listen(3000, ()=>{
     console.log("Express server running")
 })
+
+function isAuthenticated(req, res, next) {
+    if(req.session.userAuthenticated) {
+        next();
+    } else {
+        res.redirect("/")
+    }
+}
 

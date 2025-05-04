@@ -3,24 +3,34 @@
     <%- include('partials/header.ejs')%>
     <%- include('partials/title.ejs')%>
 <body>
-    <form>
+    <form method="POST" action="/signUp">
         <h2>Sign Up to Plan Your Meals Today!</h2>
         <div class="name-fields">
-            <input class = "textbox" type="text"id= "firstname_input" name = "firstname" placeholder="First">
-            <input class = "textbox" type="text"id= "lastname_input" name = "lastname" placeholder="Last"> 
+            <input class = "textbox" type="text"id= "firstname_input" name = "firstname" placeholder="First Name">
+            <input class = "textbox" type="text"id= "lastname_input" name = "lastname" placeholder="Last Name"> 
+          
+            
         </div>
-        
-            <div><input class = "textbox" type="text"id= "email_input" name = "email" placeholder="Email"><br><div>
+        <div><input class = "textbox" type="text"id= "username_input" name = "username" placeholder="Username"><br><div></div>
+        </div>
+            
+            <input class = "textbox" type="password" id= "password_input" name = "password" placeholder="Password"> <br>
+            <input class = "textbox" type="password" id= "password_confirmation_input" name = "password_confirmation" placeholder="Confirm Your Password"> <br>
 
-            <input class = "textbox" type="text" id= "password_input" name = "password" placeholder="Password"> <br>
-            <input class = "textbox" type="text" id= "password_confirmation_input" name = "password_confirmation" placeholder="Confirm Your Password"> <br>
             <input class = "button " type="submit" value="Sign Up"> <br> <br>
 
-            <input class = "button" type="submit" value = "Already have an account? Sign in">
 
             <%- include('partials/header.ejs')%>
+            
         </div>
     </form>
+
+    <a href="/">
+        <button class = "button" type="submit">Already have an account? Sign in</button>
+    </a><br>
+    <% if(typeof(error) != "undefined") { %>
+        <%= error %>
+    <% } %>
     
 </body>
 </html>
