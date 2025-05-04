@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+    
+<body>
     <%- include('partials/header.ejs')%>
     <%- include('partials/title.ejs')%>
-<body>
     <h2>Login to Your Account!</h2>
     <form method="POST" action="/login"> 
         <input class = "textbox" type="text" id= "username_input" name = "username" placeholder="Username" required><br><br>
@@ -10,8 +17,6 @@
         <input class = "button" type="submit" value="Log In">
 
     </form>
-   
-
     <a href="/signUp">
         <button id="sign_up_input" name = "sign_up" class ="button">Sign Up</button>
     </a><br>
