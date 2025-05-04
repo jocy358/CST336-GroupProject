@@ -18,10 +18,13 @@
   },
   "homepage": "https://github.com/jocy358/CST336-GroupProject#readme",
   "dependencies": {
+    "axios": "^1.9.0",
     "bcrypt": "^5.1.1",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "express-session": "^1.18.1",
-    "mysql2": "^3.14.1"
+    "mysql2": "^3.14.1",
+    "querystring": "^0.2.1",
+    "request": "^2.88.2"
   }
 }

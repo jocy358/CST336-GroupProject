@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2rem;
+        }
+
+        #searchBox {
+            width: 300px;
+            padding: 8px;
+            font-size: 16px;
+        }
+
+        #suggestions {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            max-height: 200px;
+            overflow-y: auto;
+            width: 300px;
+        }
+
+        #suggestions li {
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+        }
+
+        #suggestions li:hover {
+            background-color: #f0f0f0;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Search for Food</h2>
+    <input type="text" id="searchBox" placeholder="Start typing..." autocomplete="off" />
+    <ul id="suggestions"></ul>
+    <script src="/js/fatSecret.js"></script>
+</body>
+
+</html>
