@@ -13,6 +13,7 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
 app.use(express.urlencoded({extended:true}));
+app.use(express.json());
 
 app.set('trust proxy', 1) 
 app.use(session({
@@ -130,6 +131,7 @@ app.post('/login', async(req, res) => {
     } 
     if(match) {
         req.session.userAuthenticated = true;
+        req.session.userId = rows[0].userId;
         res.render('home.ejs')
     } else {
         res.render('login.ejs', {"error":"Wrong credentials!"})
@@ -162,6 +164,39 @@ app.post('/signUp', async(req, res) => {
         res.render('login.ejs', {"error":"Successfully Signed Up"})
     }
 })
+
+let tableMap = {
+  breakfast: 'breakfast',
+  lunch: 'lunch',
+  dinner: 'dinner',
+  snacks: 'snacks'
+};
+
+app.post('/addToMeal/:mealType', async (req, res) => {
+  let { mealType } = req.params;
+  let { title, imageUrl, recipeUrl } = req.body;
+  let userId = req.session.userId;
+
+  if (!userId) {
+      return res.status(401).send("Not logged in");
+  }
+
+  let table = tableMap[mealType];
+  if (!table) {
+      return res.status(400).send("Invalid meal type");
+  }
+
+  try {
+      let sql = `INSERT INTO ${table} (title, imageUrl, recipeUrl, userId) VALUES (?, ?, ?, ?)`;
+      let sqlParams = [title, imageUrl, recipeUrl, userId];
+      let [rows] = await conn.query(sql, sqlParams);
+
+      res.status(200).send("Recipe added");
+  } catch (error) {
+      console.error(error);
+      res.status(500).send("Database error");
+  }
+});
 
 app.get("/home",isAuthenticated, async(req, res) => {
 
