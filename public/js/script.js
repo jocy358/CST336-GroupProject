@@ -4,7 +4,7 @@ async function searchRecipe() {
     // alert("function working")
     let searchQuery = document.querySelector("#recipeSearch").value.replace(/\s+/g, "+");
     // console.log(searchQuery);
-    let apiKey = "";
+    let apiKey = "5a2e39c5b5344f2d8640518e73072692";
     let url = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + searchQuery + "&number=10&apiKey=" + apiKey;
 
     let response = await fetch(url);
@@ -12,7 +12,6 @@ async function searchRecipe() {
     // console.log(data);
     displayResults(data);
 }
-
 function displayResults(recipes) {
     let results = document.getElementById("results");
     results.innerHTML = "";
@@ -28,7 +27,7 @@ function displayResults(recipes) {
 }
 
 async function displayRecipe(recipeID) {
-    let apiKey = "";
+    let apiKey = "5a2e39c5b5344f2d8640518e73072692";
     let url = "https://api.spoonacular.com/recipes/" + recipeID + "/information?includeNutrition=false&apiKey=" + apiKey;
 
     let response = await fetch(url);
@@ -70,8 +69,6 @@ async function displayRecipe(recipeID) {
     document.getElementById(`addToLunch-${recipeID}`).addEventListener("click", () => addToMeal("lunch"));
     document.getElementById(`addToDinner-${recipeID}`).addEventListener("click", () => addToMeal("dinner"));
     document.getElementById(`addToSnacks-${recipeID}`).addEventListener("click", () => addToMeal("snacks"));
-
-    
 }
 
 async function addToMeal(mealType) {
