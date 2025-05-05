@@ -70,6 +70,8 @@ async function displayRecipe(recipeID) {
     document.getElementById(`addToLunch-${recipeID}`).addEventListener("click", () => addToMeal("lunch"));
     document.getElementById(`addToDinner-${recipeID}`).addEventListener("click", () => addToMeal("dinner"));
     document.getElementById(`addToSnacks-${recipeID}`).addEventListener("click", () => addToMeal("snacks"));
+
+    
 }
 
 async function addToMeal(mealType) {
