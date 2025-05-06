@@ -16,21 +16,69 @@
                 <h1>Log Your Meals</h1>
                 <div>
                     <h2>Breakfast</h2> <br>
-                    <button>+ add food</button>
+                    <input type="text" id="addBreakfastInput"><button>+ add food</button>
+                    <div id="breakfastList">
+                        <br>
+                        <% for (breakfast of rows) { %>
+                            <div class="center-div">
+                                <li><%= breakfast.title %></li>
+                                <form action="/deleteBreakfast" method="POST" style="display:inline;">
+                                    <input type="hidden" name="breakfastId" value="<%= breakfast.breakfastId %>">
+                                    <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                                </form>
+                            </div>
+                        <% } %>
+                    </div>
                 </div>
 
                 <div>
                     <h2>Lunch</h2> <br>
-                    <button>+ add food</button>
+                    <input type="text" id="addLunchInput"><button>+ add food</button>
+                    <div id="lunchList">
+                        <br>
+                        <% for (lunch of rows1) { %>
+                            <div class="center-div">
+                                <li><%= lunch.title %></li>
+                                <form action="/deleteLunch" method="POST" style="display:inline;">
+                                    <input type="hidden" name="lunchId" value="<%= lunch.lunchId %>">
+                                    <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                                </form>
+                            </div>
+                        <% } %>
+                    </div>
                 </div>
 
                 <div>
                     <h2>Dinner</h2> <br>
-                    <button>+ add food</button>
+                    <input type="text" id="addDinnerInput"><button>+ add food</button>
+                    <div id="dinnerList">
+                        <br>
+                        <% for (dinner of rows2) { %>
+                            <div class="center-div">
+                                <li><%= dinner.title %></li>
+                                <form action="/deleteDinner" method="POST" style="display:inline;">
+                                    <input type="hidden" name="dinnerId" value="<%= dinner.dinnerId %>">
+                                    <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                                </form>
+                            </div>
+                        <% } %>
+                    </div>
                 </div>
                 <div>
                     <h2>Snacks</h2> <br>
-                    <button>+ add food</button>
+                    <input type="text" id="addSnacksInput"><button>+ add food</button>
+                    <div id="snacksList">
+                        <br>
+                        <% for (snack of rows3) { %>
+                            <div class="center-div">
+                                <li><%= snack.title %></li>
+                                <form action="/deleteSnack" method="POST" style="display:inline;">
+                                    <input type="hidden" name="snacksId" value="<%= snack.snacksId %>">
+                                    <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                                </form>
+                            </div>
+                        <% } %>
+                    </div>
                 </div>
 
                 <div>
