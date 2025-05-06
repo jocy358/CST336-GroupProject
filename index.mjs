@@ -250,13 +250,13 @@ app.post('/deleteDinner', async (req, res) => {
   await conn.query(sql, sqlParams);
   res.redirect('/foodLogger');
 });
-// app.post('/deleteSnack', async (req, res) => {
-//   let snackId = req.body.snacksId;
-//   let sql = `DELETE FROM dinner WHERE snackId = ?`;
-//   let sqlParams = [snackId];
-//   await conn.query(sql, sqlParams);
-//   res.redirect('/foodLogger');
-// });
+app.post('/deleteSnack', async (req, res) => {
+  let snackId = req.body.snacksId;
+  let sql = `DELETE FROM snacks WHERE snacksId = ?`;
+  let sqlParams = [snackId];
+  await conn.query(sql, sqlParams);
+  res.redirect('/foodLogger');
+});
 app.get("/nutritional", isAuthenticated, async(req, res) => {
     res.render('nutritional.ejs');
 });
