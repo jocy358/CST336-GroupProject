@@ -5,8 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        body {
+    <%- include('partials/header.ejs')%> <br>
+    <%- include('partials/title.ejs')%>
+    <%- include('partials/navbar.ejs')%>
+    <link rel="stylesheet" href="/css/styles.css">
+    <!-- <style>
+
+        /* body {
             font-family: Arial, sans-serif;
             margin: 2rem;
         }
@@ -40,14 +45,16 @@
             text-decoration: none;
             color: black;
             display: block;
-        }
-    </style>
+        } */
+    </style> -->
 </head>
 
-<body>
-    <h2>Search for Food</h2>
-    <input type="text" id="searchBox" placeholder="Start typing..." autocomplete="off" />
-    <ul id="suggestions"></ul>
+<body class ="nutrional-container">
+    <div class = "search-wrap">
+        <h2>Search for a Food's Nutrition!</h2>
+        <input type="text" id="searchBox" placeholder="Start typing..." autocomplete="off" />
+        <ul id="suggestions"></ul>
+    </div>
     <script src="/js/fatSecret.js"></script>
 </body>
 
