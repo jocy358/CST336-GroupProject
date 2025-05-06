@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Calorie Calculator</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <%- include('partials/navbar'); %>
+
+  <h1>Calorie Calculator</h1>
+  <form id="calorieForm" onsubmit="calculateCalories(event)">
+    <label for="gender">Gender:</label>
+    <select id="gender" required>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+    </select><br><br>
+
+    <label for="age">Age (years):</label>
+    <input type="number" id="age" required><br><br>
+    <label for="height">Height (inches):</label>
+    <input type="number" id="height" required><br><br>
+    <label for="weight">Weight (pounds):</label>
+    <input type="number" id="weight" required><br><br>
+    <label for="activity">Activity Level:</label>
+    <select id="activity" required>
+      <option value="1.2">Sedentary (little/no exercise)</option>
+      <option value="1.375">Lightly Active (1–3 days/week)</option>
+      <option value="1.55">Moderately Active (3–5 days/week)</option>
+      <option value="1.725">Very Active (6–7 days/week)</option>
+      <option value="1.9">Extra Active (intense daily workouts)</option>
+    </select><br><br>
+    <button type="submit">Calculate Calories</button>
+  </form>
+  <p id="result" style="font-weight: bold; margin-top: 10px;"></p>
+  <script>
+    function calculateCalories(event) {
+      event.preventDefault();
+      const gender = document.getElementById('gender').value;
+      const age = parseFloat(document.getElementById('age').value);
+      const heightIn = parseFloat(document.getElementById('height').value); 
+      const weightLb = parseFloat(document.getElementById('weight').value); 
+      const activity = parseFloat(document.getElementById('activity').value);
+      const heightCm = heightIn * 2.54;
+      const weightKg = weightLb * 0.453592;
+      let bmr;
+      if (gender === 'male') {
+        bmr = 10 * weightKg + 6.25 * heightCm - 5 * age + 5;
+      } else {
+        bmr = 10 * weightKg + 6.25 * heightCm - 5 * age - 161;
+      }
+      const dailyCalories = bmr * activity;
+      document.getElementById('result').textContent =
+        `Estimated daily energy needs: ${Math.round(dailyCalories)} Calories`;
+    }
+  </script>
+
+  <%- include('partials/footer'); %>
+</body>
+</html>
