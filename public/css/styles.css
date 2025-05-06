@@ -1,7 +1,7 @@
 body{
     text-align: center;
     align-content: center;
-    background-color: rgb(227, 231, 235);
+    background-color: #e3e7eb;
 }
 .title-container {
     display: flex;
@@ -17,6 +17,8 @@ body{
 }
 .navbar-container button{
     background-color: #67b352; 
+    border-width: 5px;
+    border-radius: 5px;
     color: white;                     
     font-size: 16px; 
 }
@@ -45,6 +47,63 @@ body{
     max-width: 500px;
     margin: 0 auto;
 }
+.recipe-search{
+    width: 300px;
+    padding: 8px;
+    font-size: 16px;
+    align-items: center;
+}
 .name-fields div {
     flex: 1;
 }
+
+.search-container div {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #67b352;
+    background-color:#d7dde4;
+    flex: 1;
+    padding: 12px 24px;   
+    display: flex;
+    gap: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.search-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+}
+
+#searchBox {
+    width: 300px;
+    padding: 8px;
+    font-size: 16px;
+     align-items: center;
+}
+
+#suggestions {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    max-height: 200px;
+    overflow-y: auto;
+    width: 300px;
+}
+
+#suggestions li {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+#suggestions li:hover {
+    background-color: #f0f0f0;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    display: block;
+} 

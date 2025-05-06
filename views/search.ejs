@@ -4,14 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <%- include('partials/header.ejs')%> <br>
+    <%- include('partials/title.ejs')%>
+    <%- include('partials/navbar.ejs')%>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
     <!-- search by ingredients -->
-    <input id="recipeSearch" type="text">
+    <h2>Search for a Recipe!</h2>
+    <input id="recipeSearch" type="text"class = "recipe-search">
     <input id="submit" type="submit" value="Search">
 
-    <div id="results"></div>
-
+    <div id="results" class = "search-container"></div>
     <script src="js/script.js"></script>
 </body>
 </html>
