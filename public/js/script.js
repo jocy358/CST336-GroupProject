@@ -4,8 +4,8 @@ async function searchRecipe() {
     // alert("function working")
     let searchQuery = document.querySelector("#recipeSearch").value.replace(/\s+/g, "+");
     // console.log(searchQuery);
-    let apiKey = "5a2e39c5b5344f2d8640518e73072692";
-    let url = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + searchQuery + "&number=10&apiKey=" + apiKey;
+    let apiKey = "0dd5097806a24353baa709c4af92c485";
+    let url = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + searchQuery + "&number=5&apiKey=" + apiKey;
 
     let response = await fetch(url);
     let data = await response.json();
@@ -27,7 +27,7 @@ function displayResults(recipes) {
 }
 
 async function displayRecipe(recipeID) {
-    let apiKey = "5a2e39c5b5344f2d8640518e73072692";
+    let apiKey = "0dd5097806a24353baa709c4af92c485";
     let url = "https://api.spoonacular.com/recipes/" + recipeID + "/information?includeNutrition=false&apiKey=" + apiKey;
 
     let response = await fetch(url);
@@ -82,7 +82,7 @@ async function addToMeal(mealType) {
         });
 
         const result = await response.text();
-        alert(result);
+        // alert(result);
     } catch (error) {
         console.error("Error adding recipe:", error);
         alert("Failed to add recipe.");

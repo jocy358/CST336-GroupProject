@@ -132,7 +132,7 @@ app.post('/login', async(req, res) => {
     if(match) {
         req.session.userAuthenticated = true;
         req.session.userId = rows[0].userId;
-        res.render('home.ejs')
+        res.render('foodLogger.ejs')
     } else {
         res.render('login.ejs', {"error":"Wrong credentials!"})
     }
@@ -200,13 +200,63 @@ app.post('/addToMeal/:mealType', async (req, res) => {
 
 app.get("/home",isAuthenticated, async(req, res) => {
 
-    res.render('home.ejs');
+    res.render('foodLogger.ejs');
 });
 
 app.get("/foodLogger", isAuthenticated, async(req, res) => {
+    let userId = req.session.userId;
+    let breakfast = `SELECT title, breakfastId FROM breakfast
+    where userId = ?`;
+    const [rows] = await conn.query(breakfast, [userId]);
 
-    res.render('foodLogger.ejs');
+    let lunch = `SELECT title, lunchId FROM lunch
+    where userId = ?`;
+    const [rows1] = await conn.query(lunch, [userId]);
+
+    let dinner = `SELECT title, dinnerId FROM dinner
+    where userId = ?`;
+    const [rows2] = await conn.query(dinner, [userId]);
+
+    let snacks = `SELECT title, snacksId FROM snacks
+    where userId = ?`;
+    const [rows3] = await conn.query(snacks, [userId]);
+
+    // console.log(rows);
+    // console.log(rows1);
+    // console.log(rows2);
+    // console.log(rows3);
+    res.render('home.ejs', {rows, rows1, rows2, rows3});
+    // res.render('home.ejs');
 });
+
+app.post('/deleteLunch', async (req, res) => {
+  let lunchId = req.body.lunchId;
+  let sql = `DELETE FROM lunch WHERE lunchId = ?`;
+  let sqlParams = [lunchId];
+  await conn.query(sql, sqlParams);
+  res.redirect('/foodLogger');
+});
+app.post('/deleteBreakfast', async (req, res) => {
+  let breakfastId = req.body.breakfastId;
+  let sql = `DELETE FROM breakfast WHERE breakfastId = ?`;
+  let sqlParams = [breakfastId];
+  await conn.query(sql, sqlParams);
+  res.redirect('/foodLogger');
+});
+app.post('/deleteDinner', async (req, res) => {
+  let dinnerId = req.body.dinnerId;
+  let sql = `DELETE FROM dinner WHERE dinnerId = ?`;
+  let sqlParams = [dinnerId];
+  await conn.query(sql, sqlParams);
+  res.redirect('/foodLogger');
+});
+// app.post('/deleteSnack', async (req, res) => {
+//   let snackId = req.body.snacksId;
+//   let sql = `DELETE FROM dinner WHERE snackId = ?`;
+//   let sqlParams = [snackId];
+//   await conn.query(sql, sqlParams);
+//   res.redirect('/foodLogger');
+// });
 app.get("/nutritional", isAuthenticated, async(req, res) => {
     res.render('nutritional.ejs');
 });

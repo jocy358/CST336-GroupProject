@@ -48,3 +48,11 @@ body{
 .name-fields div {
     flex: 1;
 }
+
+.center-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+}
