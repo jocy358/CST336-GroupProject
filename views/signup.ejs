@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
     <%- include('partials/header.ejs')%>
     <%- include('partials/title.ejs')%>
-<body>
     <form method="POST" action="/signUp">
         <h2>Sign Up to Plan Your Meals Today!</h2>
         <div class="name-fields">
             <input class = "textbox" type="text"id= "firstname_input" name = "firstname" placeholder="First Name" required>
             <input class = "textbox" type="text"id= "lastname_input" name = "lastname" placeholder="Last Name" required> 
-          
-            
         </div>
         <div><input class = "textbox" type="text"id= "username_input" name = "username" placeholder="Username" required><br><div></div>
         </div>

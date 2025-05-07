@@ -33,6 +33,8 @@ const pool = mysql.createPool({
 
 const conn = await pool.getConnection();
 
+// API Documentation found at : https://platform.fatsecret.com/platform-api for the following code.
+
 let clientID = '8d129b6dd98740a1b8999f06a91a356f'
 let clientSecret = '3e9bfb8375144ffc9e6970f3090158fc'
 
@@ -132,7 +134,7 @@ app.post('/login', async(req, res) => {
     if(match) {
         req.session.userAuthenticated = true;
         req.session.userId = rows[0].userId;
-        res.render('foodLogger.ejs')
+        res.render('calorieCalculator.ejs')
     } else {
         res.render('login.ejs', {"error":"Wrong credentials!"})
     }

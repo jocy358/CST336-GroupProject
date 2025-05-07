@@ -6,7 +6,9 @@
   <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-  <%- include('partials/navbar'); %>
+  <%- include('partials/header.ejs')%> <br>
+  <%- include('partials/title.ejs')%>
+  <%- include('partials/navbar.ejs')%>
 
   <h1>Calorie Calculator</h1>
   <form id="calorieForm" onsubmit="calculateCalories(event)">
