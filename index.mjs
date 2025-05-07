@@ -200,7 +200,7 @@ app.post('/addToMeal/:mealType', async (req, res) => {
 
 app.get("/home",isAuthenticated, async(req, res) => {
 
-    res.render('foodLogger.ejs');
+    res.render('calorieCalculator.ejs');
 });
 
 app.get("/foodLogger", isAuthenticated, async(req, res) => {
@@ -285,4 +285,3 @@ function isAuthenticated(req, res, next) {
         res.redirect("/")
     }
 }
-
