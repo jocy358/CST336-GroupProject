@@ -12,9 +12,16 @@ body{
     align-items: center;
 }
 .navbar-container {
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    background-color: #67b352;
+    padding: 15px 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Optional, to make it full-width */
 }
+
 .navbar-container button{
     background-color: #67b352; 
     border-width: 5px;
