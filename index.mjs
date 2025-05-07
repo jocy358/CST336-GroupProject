@@ -4,9 +4,11 @@ import bcrypt from 'bcrypt';
 import session from 'express-session';
 import request from 'request';
 import axios from 'axios';
+import cors from 'cors';
 
 
 const app = express();
+app.use(cors());
 let accessToken;
 
 app.set('view engine', 'ejs');
